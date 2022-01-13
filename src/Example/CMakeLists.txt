@@ -59,7 +59,7 @@ if (ANDROID)
     set(ANDROID_API_VERSION $ENV{ANDROID_API_VERSION})
     set(OPENSSL_ROOT_PATH "$ENV{OPENSSL_ROOT_DIR}")
 
-    set(RENAME_ME_EXTRA_LIBS
+    set(DoctorPill_EXTRA_LIBS
         ${PROJECT_NAME}
 #        libName
         )
@@ -75,7 +75,7 @@ if (ANDROID)
             "${SIGPATH}/quasarapp.keystore"
             "${SIGPASS_QUASARAPP}"
             "${TARGET_DIR}"
-            "${RENAME_ME_EXTRA_LIBS}")
+            "${DoctorPill_EXTRA_LIBS}")
 
     else()
         message("NO_SIGN_APP")
@@ -83,7 +83,7 @@ if (ANDROID)
         addDeployAPK(${CURRENT_PROJECT}
             "${CMAKE_CURRENT_LIST_DIR}/android"
             "${TARGET_DIR}"
-            "${RENAME_ME_EXTRA_LIBS}")
+            "${DoctorPill_EXTRA_LIBS}")
 
     endif()
     set(manifest_file "${CMAKE_CURRENT_SOURCE_DIR}/android/AndroidManifest.xml")
@@ -109,19 +109,19 @@ elseif(IOS)
 #    set_xcode_property(${CURRENT_PROJECT} PRODUCT_BUNDLE_IDENTIFIER ${CHEATCARD_PACKAGE_ID} All)
 
     set_target_properties(${CURRENT_PROJECT} PROPERTIES
-        MACOSX_BUNDLE_GUI_IDENTIFIER ${RENAME_ME_PACKAGE_ID}
-        MACOSX_BUNDLE_BUNDLE_VERSION ${RENAME_ME_VERSION}
-        MACOSX_BUNDLE_SHORT_VERSION_STRING ${RENAME_ME_VERSION}
+        MACOSX_BUNDLE_GUI_IDENTIFIER ${DoctorPill_PACKAGE_ID}
+        MACOSX_BUNDLE_BUNDLE_VERSION ${DoctorPill_VERSION}
+        MACOSX_BUNDLE_SHORT_VERSION_STRING ${DoctorPill_VERSION}
     )
 else()
     # Desctop deploying
 
     message(GIT_COMMIT_COUNT = ${GIT_COMMIT_COUNT})
 
-    set(DeployFile "${CMAKE_CURRENT_SOURCE_DIR}/Deploy/RENAME_ME.json")
+    set(DeployFile "${CMAKE_CURRENT_SOURCE_DIR}/Deploy/DoctorPill.json")
     configure_file("${DeployFile}.in" ${DeployFile} @ONLY)
 
-    addDeployFromCustomFile("RENAME_ME" ${DeployFile})
+    addDeployFromCustomFile("DoctorPill" ${DeployFile})
 
 endif()
 
@@ -131,18 +131,5 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(${CURRENT_PROJECT})
 endif()
 
-
-set(LANGS ${CMAKE_CURRENT_SOURCE_DIR}/languages/en.ts
-          ${CMAKE_CURRENT_SOURCE_DIR}/languages/ru.ts
-          ${CMAKE_CURRENT_SOURCE_DIR}/languages/uk.ts
-          ${CMAKE_CURRENT_SOURCE_DIR}/languages/ja.ts
-          ${CMAKE_CURRENT_SOURCE_DIR}/languages/tr.ts
-          ${CMAKE_CURRENT_SOURCE_DIR}/languages/zh.ts
-          ${CMAKE_CURRENT_SOURCE_DIR}/languages/de.ts
-          ${CMAKE_CURRENT_SOURCE_DIR}/languages/fr.ts
-          ${CMAKE_CURRENT_SOURCE_DIR}/languages/es.ts
-          ${CMAKE_CURRENT_SOURCE_DIR}/languages/pl.ts)
-
-prepareQM(${CURRENT_PROJECT} ${CMAKE_CURRENT_SOURCE_DIR}/../ "${LANGS}")
 
 

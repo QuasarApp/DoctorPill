@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>DoctorPillModule/qmldir</file>
+        <file>DoctorPillModule/DoctorPill.qml</file>
+    </qresource>
+    <qresource prefix="/DoctorPillTr">
+        <file>languages/en.qm</file>
+    </qresource>
+</RCC>

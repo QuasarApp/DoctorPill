@@ -6,7 +6,7 @@
 #
 
 cmake_minimum_required(VERSION 3.14)
-project(RENAME_ME LANGUAGES CXX)
+project(DoctorPill LANGUAGES CXX)
 if(TARGET ${PROJECT_NAME})
   message("The ${PROJECT_NAME} arledy included in main Project")
   return()
@@ -32,47 +32,47 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Test QUIET)
 include(submodules/CMake/QuasarApp.cmake)
 
 updateGitVars()
-set(RENAME_ME_VERSION "0.${GIT_COMMIT_COUNT}.${GIT_COMMIT_HASH}")
-set(RENAME_ME_PACKAGE_ID "quasarapp.core.RENAME_ME")
+set(DoctorPill_VERSION "0.${GIT_COMMIT_COUNT}.${GIT_COMMIT_HASH}")
+set(DoctorPill_PACKAGE_ID "quasarapp.core.DoctorPill")
 
-if (NOT DEFINED RENAME_ME_TESTS)
-    set(RENAME_ME_TESTS ON)
+if (NOT DEFINED DoctorPill_TESTS)
+    set(DoctorPill_TESTS ON)
 
     if (DEFINED TARGET_PLATFORM_TOOLCHAIN)
         if (${TARGET_PLATFORM_TOOLCHAIN} STREQUAL "wasm32")
-            set(RENAME_ME_TESTS OFF)
+            set(DoctorPill_TESTS OFF)
         endif()
     endif()
 
     if (ANDROID OR IOS)
-        set(RENAME_ME_TESTS OFF)
+        set(DoctorPill_TESTS OFF)
     endif()
 
     if (NOT QT_VERSION_MAJOR)
-        set(RENAME_ME_TESTS OFF)
+        set(DoctorPill_TESTS OFF)
     endif()
 endif()
 
-if (NOT DEFINED RENAME_ME_EXAMPLE)
-    set(RENAME_ME_EXAMPLE ON)
+if (NOT DEFINED DoctorPill_EXAMPLE)
+    set(DoctorPill_EXAMPLE ON)
 
     if (NOT QT_VERSION_MAJOR)
-        set(RENAME_ME_EXAMPLE OFF)
+        set(DoctorPill_EXAMPLE OFF)
     endif()
 endif()
 
 initAll()
 
 updateGitVars()
-set(RENAME_VERSION "0.${GIT_COMMIT_COUNT}.${GIT_COMMIT_HASH}")
+set(DOCTOR_PILL_VERSION "0.${GIT_COMMIT_COUNT}.${GIT_COMMIT_HASH}")
 
 add_subdirectory(src/Library)
 
-if (DEFINED RENAME_ME_EXAMPLE)
+if (DEFINED DoctorPill_EXAMPLE)
     add_subdirectory(src/Example)
 endif()
 
-if (RENAME_ME_TESTS)
+if (DoctorPill_TESTS)
     add_subdirectory(tests)
 else()
     message("The ${PROJECT_NAME} tests is disabled.")
@@ -80,4 +80,4 @@ endif()
 
 
 addDoc(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/doxygen.conf)
-addDeployFromCustomFile("RENAME_ME" "${CMAKE_CURRENT_SOURCE_DIR}/Deploy/RENAME_ME.json")
+addDeployFromCustomFile("DoctorPill" "${CMAKE_CURRENT_SOURCE_DIR}/Deploy/DoctorPill.json")

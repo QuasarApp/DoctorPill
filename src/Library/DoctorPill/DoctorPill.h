@@ -5,12 +5,12 @@
 //# of this license document, but changing it is not allowed.
 //#
 
-#include "RENAME_ME_global.h"
+#include "DoctorPill_global.h"
 
-inline void initRENAME_MEResources() { Q_INIT_RESOURCE(RENAME_ME); }
+inline void initDoctorPillResources() { Q_INIT_RESOURCE(DoctorPill); }
 
-namespace RENAME_ME {
+namespace DoctorPill {
 
-bool RENAME_ME_EXPORT init();
+bool DoctorPill_EXPORT init();
 
 };

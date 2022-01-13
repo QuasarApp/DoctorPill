@@ -1,0 +1,19 @@
+{
+    "bin": [
+        "src/build/Debug/DoctorPillEaxample",
+        "src/build/Debug/DoctorPillEaxample.exe"
+        ],
+    "clear": true,
+    "libDir": "/home/andrei/gitHub/DoctorPill",
+    "recursiveDepth": "10",
+    "deploySystem": false,
+    "qmlDir": "../",
+    "ignoreEnv": [
+         "/home/andrei/gitHub/DoctorPill/Distro"
+        ],
+    "extraLib": "crypto",
+    "targetDir": "/home/andrei/gitHub/DoctorPill/Distro",
+    "deployVersion": "0.1.2f207ec",
+
+}
+

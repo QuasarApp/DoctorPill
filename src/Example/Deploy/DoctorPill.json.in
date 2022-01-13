@@ -1,7 +1,7 @@
 {
     "bin": [
-        "src/build/Debug/RENAME_MEEaxample",
-        "src/build/Debug/RENAME_MEEaxample.exe"
+        "src/build/Debug/DoctorPillEaxample",
+        "src/build/Debug/DoctorPillEaxample.exe"
         ],
     "clear": true,
     "libDir": "@CMAKE_SOURCE_DIR@",
@@ -13,7 +13,7 @@
         ],
     "extraLib": "crypto",
     "targetDir": "@CMAKE_SOURCE_DIR@/Distro",
-    "deployVersion": "@RENAME_VERSION@",
+    "deployVersion": "@DOCTOR_PILL_VERSION@",
 
 }
 

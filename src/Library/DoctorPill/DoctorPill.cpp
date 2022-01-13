@@ -5,13 +5,13 @@
 //# of this license document, but changing it is not allowed.
 //#
 
-#include "RENAME_ME.h"
+#include "DoctorPill.h"
 
 
-namespace RENAME_ME {
+namespace DoctorPill {
 
 bool init() {
-    initRENAME_MEResources();
+    initDoctorPillResources();
     return true;
 }
 

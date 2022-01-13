@@ -7,18 +7,18 @@
 
 cmake_minimum_required(VERSION 3.14)
 
-add_definitions(-DRENAME_ME_LIBRARY)
+add_definitions(-DDoctorPill_LIBRARY)
 
 
 file(GLOB SOURCE_CPP
-    "*RENAME_ME/*.cpp"
+    "*DoctorPill/*.cpp"
      "private/*.cpp"
 )
 
 if (${QT_VERSION_MAJOR})
     file(GLOB SOURCE_QRC
         "*.qrc"
-        "RENAME_ME/*.qrc"
+        "DoctorPill/*.qrc"
         "private/*.qrc"
     )
 
@@ -37,10 +37,19 @@ endif()
 target_include_directories(${PROJECT_NAME} PUBLIC ${PUBLIC_INCUDE_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${PRIVATE_INCUDE_DIR})
 
-set(LANGS ${CMAKE_CURRENT_SOURCE_DIR}/languages/en.ts)
 
+set(LANGS ${CMAKE_CURRENT_SOURCE_DIR}/languages/en.ts
+          ${CMAKE_CURRENT_SOURCE_DIR}/languages/ru.ts
+          ${CMAKE_CURRENT_SOURCE_DIR}/languages/uk.ts
+          ${CMAKE_CURRENT_SOURCE_DIR}/languages/ja.ts
+          ${CMAKE_CURRENT_SOURCE_DIR}/languages/tr.ts
+          ${CMAKE_CURRENT_SOURCE_DIR}/languages/zh.ts
+          ${CMAKE_CURRENT_SOURCE_DIR}/languages/de.ts
+          ${CMAKE_CURRENT_SOURCE_DIR}/languages/fr.ts
+          ${CMAKE_CURRENT_SOURCE_DIR}/languages/es.ts
+          ${CMAKE_CURRENT_SOURCE_DIR}/languages/pl.ts)
 
-prepareQM(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR} "${LANGS}")
+prepareQM(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/../ "${LANGS}")
 
 set(QML_IMPORT_PATH ${QML_IMPORT_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/src" CACHE STRING "" FORCE)
 
