@@ -5,6 +5,15 @@
 //# of this license document, but changing it is not allowed.
 //#
 
-int main(int argc, char *argv[]) {
-    return 0;
-}
+
+#include "DoctorPillCore/doctor.h"
+#include "DoctorPillCore/ipill.h"
+#include "DoctorPillCore/doctortest.h"
+
+inline void initDoctorPillResources() { Q_INIT_RESOURCE(DoctorPill); }
+
+namespace DoctorPill {
+
+bool DOCTOR_PILL_EXPORT init();
+
+};

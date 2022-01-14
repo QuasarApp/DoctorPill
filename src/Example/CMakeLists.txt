@@ -1,6 +1,6 @@
 #
-# Copyright (C) 2021-2021 QuasarApp.
-# Distributed under the lgplv3 software license, see the accompanying
+# Copyright (C) 2021-2022 QuasarApp.
+# Distributed under the GPLv3 software license, see the accompanying
 # Everyone is permitted to copy and distribute verbatim copies
 # of this license document, but changing it is not allowed.
 #
@@ -8,7 +8,6 @@
 cmake_minimum_required(VERSION 3.14)
 
 set(CURRENT_PROJECT "${PROJECT_NAME}Eaxample")
-option(SIGN_APP "This option enable od disabled sign apk and aab files" ON)
 
 file(GLOB SOURCE_CPP
     "*.cpp"
@@ -51,79 +50,6 @@ target_include_directories(${CURRENT_PROJECT} PRIVATE ${PRIVATE_INCUDE_DIR})
 
 SET(TARGET_DIR "${CMAKE_SOURCE_DIR}/Distro")
 file(MAKE_DIRECTORY ${TARGET_DIR})
-
-if (ANDROID)
-
-    set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android CACHE INTERNAL "")
-    set(ENV{ANDROID_API_VERSION} 31)
-    set(ANDROID_API_VERSION $ENV{ANDROID_API_VERSION})
-    set(OPENSSL_ROOT_PATH "$ENV{OPENSSL_ROOT_DIR}")
-
-    set(DoctorPill_EXTRA_LIBS
-        ${PROJECT_NAME}
-#        libName
-        )
-
-#    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS AndroidExtras REQUIRED)
-#    target_link_libraries(${CURRENT_PROJECT} PRIVATE Qt${QT_VERSION_MAJOR}::AndroidExtras)
-
-    if (SIGN_APP)
-        message("SIGN_APP")
-        addDeploySignedAPK(${CURRENT_PROJECT}
-            "${CMAKE_CURRENT_LIST_DIR}/android"
-            "QuasarAppProject"
-            "${SIGPATH}/quasarapp.keystore"
-            "${SIGPASS_QUASARAPP}"
-            "${TARGET_DIR}"
-            "${DoctorPill_EXTRA_LIBS}")
-
-    else()
-        message("NO_SIGN_APP")
-
-        addDeployAPK(${CURRENT_PROJECT}
-            "${CMAKE_CURRENT_LIST_DIR}/android"
-            "${TARGET_DIR}"
-            "${DoctorPill_EXTRA_LIBS}")
-
-    endif()
-    set(manifest_file "${CMAKE_CURRENT_SOURCE_DIR}/android/AndroidManifest.xml")
-    configure_file("${manifest_file}.in" ${manifest_file} @ONLY)
-
-    set(gradle_file "${CMAKE_CURRENT_SOURCE_DIR}/android/build.gradle")
-    configure_file("${gradle_file}.in" ${gradle_file} @ONLY)
-
-    file(GLOB java_files
-       "android/src/com/quasarapp/androidtools/*.java"
-       "android/*.xml"
-       "android/*.gradle"
-       "android/gradlew"
-       "android/gradle.*"
-
-    )
-
-    add_custom_target(${name}Android
-        SOURCES ${java_files}
-    )
-
-elseif(IOS)
-#    set_xcode_property(${CURRENT_PROJECT} PRODUCT_BUNDLE_IDENTIFIER ${CHEATCARD_PACKAGE_ID} All)
-
-    set_target_properties(${CURRENT_PROJECT} PROPERTIES
-        MACOSX_BUNDLE_GUI_IDENTIFIER ${DoctorPill_PACKAGE_ID}
-        MACOSX_BUNDLE_BUNDLE_VERSION ${DoctorPill_VERSION}
-        MACOSX_BUNDLE_SHORT_VERSION_STRING ${DoctorPill_VERSION}
-    )
-else()
-    # Desctop deploying
-
-    message(GIT_COMMIT_COUNT = ${GIT_COMMIT_COUNT})
-
-    set(DeployFile "${CMAKE_CURRENT_SOURCE_DIR}/Deploy/DoctorPill.json")
-    configure_file("${DeployFile}.in" ${DeployFile} @ONLY)
-
-    addDeployFromCustomFile("DoctorPill" ${DeployFile})
-
-endif()
 
 if(QT_VERSION_MAJOR EQUAL 6)
     # Add This line if your project use the Quick module

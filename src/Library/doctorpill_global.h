@@ -1,6 +1,6 @@
 //#
-//# Copyright (C) 2018-2021 QuasarApp.
-//# Distributed under the lgplv3 software license, see the accompanying
+//# Copyright (C) 2018-2022 QuasarApp.
+//# Distributed under the GPLv3 software license, see the accompanying
 //# Everyone is permitted to copy and distribute verbatim copies
 //# of this license document, but changing it is not allowed.
 //#
@@ -10,10 +10,10 @@
 
 #include <QtCore/qglobal.h>
 
-#if defined(DoctorPill_LIBRARY)
-#  define DoctorPill_EXPORT Q_DECL_EXPORT
+#if defined(DOCTOR_PILL_LIBRARY)
+#  define DOCTOR_PILL_EXPORT Q_DECL_EXPORT
 #else
-#  define DoctorPill_EXPORT Q_DECL_IMPORT
+#  define DOCTOR_PILL_EXPORT Q_DECL_IMPORT
 #endif
 
 #endif //DoctorPill_GLOBAL_H

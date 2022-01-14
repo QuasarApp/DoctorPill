@@ -1,6 +1,6 @@
 #
-# Copyright (C) 2020-2021 QuasarApp.
-# Distributed under the lgplv3 software license, see the accompanying
+# Copyright (C) 2020-2022 QuasarApp.
+# Distributed under the GPLv3 software license, see the accompanying
 # Everyone is permitted to copy and distribute verbatim copies
 # of this license document, but changing it is not allowed.
 #
@@ -33,46 +33,43 @@ include(submodules/CMake/QuasarApp.cmake)
 
 updateGitVars()
 set(DoctorPill_VERSION "0.${GIT_COMMIT_COUNT}.${GIT_COMMIT_HASH}")
-set(DoctorPill_PACKAGE_ID "quasarapp.core.DoctorPill")
 
-if (NOT DEFINED DoctorPill_TESTS)
-    set(DoctorPill_TESTS ON)
+option(DOCTOR_PILL_GUI "Enable gui qml model for build" OFF)
+
+if (NOT DEFINED DOCTOR_PILL_TESTS)
+    set(DOCTOR_PILL_TESTS ON)
 
     if (DEFINED TARGET_PLATFORM_TOOLCHAIN)
         if (${TARGET_PLATFORM_TOOLCHAIN} STREQUAL "wasm32")
-            set(DoctorPill_TESTS OFF)
+            set(DOCTOR_PILL_TESTS OFF)
+            set(DOCTOR_EXAMPLE_TESTS OFF)
         endif()
     endif()
 
     if (ANDROID OR IOS)
-        set(DoctorPill_TESTS OFF)
+        set(DOCTOR_PILL_TESTS OFF)
+        set(DOCTOR_EXAMPLE_TESTS OFF)
     endif()
 
-    if (NOT QT_VERSION_MAJOR)
-        set(DoctorPill_TESTS OFF)
-    endif()
 endif()
 
-if (NOT DEFINED DoctorPill_EXAMPLE)
-    set(DoctorPill_EXAMPLE ON)
+if (NOT DEFINED DOCTOR_EXAMPLE_TESTS)
+    set(DOCTOR_EXAMPLE_TESTS ON)
 
     if (NOT QT_VERSION_MAJOR)
-        set(DoctorPill_EXAMPLE OFF)
+        set(DOCTOR_EXAMPLE_TESTS OFF)
     endif()
 endif()
 
 initAll()
 
-updateGitVars()
-set(DOCTOR_PILL_VERSION "0.${GIT_COMMIT_COUNT}.${GIT_COMMIT_HASH}")
-
 add_subdirectory(src/Library)
 
-if (DEFINED DoctorPill_EXAMPLE)
+if (DEFINED DOCTOR_EXAMPLE_TESTS)
     add_subdirectory(src/Example)
 endif()
 
-if (DoctorPill_TESTS)
+if (DOCTOR_PILL_TESTS)
     add_subdirectory(tests)
 else()
     message("The ${PROJECT_NAME} tests is disabled.")
