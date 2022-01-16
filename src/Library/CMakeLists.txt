@@ -9,7 +9,6 @@ cmake_minimum_required(VERSION 3.14)
 
 add_definitions(-DDOCTOR_PILL_LIBRARY)
 
-
 file(GLOB SOURCE_CPP
     "*.cpp"
     "*DoctorPillCore/*.cpp"
@@ -35,6 +34,10 @@ set(PRIVATE_INCUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/private")
 add_library(${PROJECT_NAME} ${SOURCE_CPP} ${SOURCE_QRC} ${SOURCE_CPP_GUI})
 target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Core )
 
+if (DOCTOR_PILL_GUI)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Quick REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Quick )
+endif()
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PUBLIC_INCUDE_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${PRIVATE_INCUDE_DIR})

@@ -2,30 +2,7 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>DP::PillsModel</name>
-    <message>
-        <source>Failed to fix bugs!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>List of incoplite bugs: %0</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Bug fixed successfull!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>List of fixed bugs: %0</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>DoctorView</name>
-    <message>
-        <source>Doctor page. The Doctor can help you to fix your app.</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Attention: Please use this page only if you knows what you do. If your application works correctly then please - do nothing.</source>
         <translation type="unfinished"></translation>

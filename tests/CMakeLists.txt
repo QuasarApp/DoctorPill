@@ -9,6 +9,8 @@ cmake_minimum_required(VERSION 3.14)
 
 set(CURRENT_PROJECT ${PROJECT_NAME}Test)
 
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Test REQUIRED)
+
 file(GLOB SOURCE_CPP
     "*.cpp" "*.qrc"
     "units/*.cpp" "units/*.qrc"

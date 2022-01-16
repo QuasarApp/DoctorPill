@@ -5,22 +5,22 @@
 //# of this license document, but changing it is not allowed.
 //#
 
-#include "pillsmodel.h"
+#include "doctormodel.h"
 #include <QHash>
 
 namespace DP {
 
-PillsModel::PillsModel(const QList<QSharedPointer<iPill>> &base):
+DoctorModel::DoctorModel(const QList<QSharedPointer<iPill>> &base):
     _doctor(base)
 {
 
 }
 
-int PillsModel::rowCount(const QModelIndex &) const {
+int DoctorModel::rowCount(const QModelIndex &) const {
     return _viewData.count();
 }
 
-QVariant PillsModel::data(const QModelIndex &index, int role) const {
+QVariant DoctorModel::data(const QModelIndex &index, int role) const {
 
     if (index.row() < 0 || index.row() >= rowCount()) {
         return "";
@@ -47,7 +47,7 @@ QVariant PillsModel::data(const QModelIndex &index, int role) const {
     return "Unknown";
 }
 
-QHash<int, QByteArray> PillsModel::roleNames() const {
+QHash<int, QByteArray> DoctorModel::roleNames() const {
     QHash<int, QByteArray> roles;
 
     roles[Roles::Name] = "issueName";
@@ -57,7 +57,7 @@ QHash<int, QByteArray> PillsModel::roleNames() const {
     return roles;
 }
 
-void PillsModel::usePill(QString pillName) {
+void DoctorModel::usePill(QString pillName) {
 
     auto pill = _viewData.value(pillName, {});
     if (!pill._pill)
@@ -66,25 +66,25 @@ void PillsModel::usePill(QString pillName) {
     _doctor.fix({pill._pill});
 }
 
-void PillsModel::diagnostic() {
+void DoctorModel::diagnostic() {
     _doctor.diagnostic();
 }
 
-void PillsModel::handleFixFailed(QList<QSharedPointer<iPill>> failed) {
+void DoctorModel::handleFixFailed(QList<QSharedPointer<iPill>> failed) {
 
     for (const auto &pill : qAsConst(failed)) {
         _viewData[pill->name()]._status = static_cast<int>(IssueStatus::Failed);
     }
 }
 
-void PillsModel::handleFixSuccessful(QList<QSharedPointer<iPill>> successful) {
+void DoctorModel::handleFixSuccessful(QList<QSharedPointer<iPill>> successful) {
 
     for (const auto &pill : qAsConst(successful)) {
         _viewData[pill->name()]._status = static_cast<int>(IssueStatus::Solved);
     }
 }
 
-void PillsModel::handleBugDetected(QList<QSharedPointer<iPill>> bugDetected) {
+void DoctorModel::handleBugDetected(QList<QSharedPointer<iPill>> bugDetected) {
 
     beginResetModel();
 

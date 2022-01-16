@@ -10,10 +10,23 @@
 #include "DoctorPillCore/ipill.h"
 #include "DoctorPillCore/doctortest.h"
 
-inline void initDoctorPillResources() { Q_INIT_RESOURCE(DoctorPill); }
+inline void initDoctorPillResources() {
+    Q_INIT_RESOURCE(DoctorPill);
+}
 
-namespace DoctorPill {
+class QQmlApplicationEngine;
 
-bool DOCTOR_PILL_EXPORT init();
+/**
+ * @brief DP This is base name space of the DoctorPill(DP) library. Please if you use the gui application and gui models then invoke the DP::init method before use this library.
+ */
+namespace DP {
 
-};
+/**
+     * @brief init This function initialize the qml gui classes of the DoctorPill library.
+     * @note if you do not use GUI then this function do nothing.
+     * @param engine This is qml engine pointer if this pointer is invalid then finction return false.
+     * @return return true if the library initialized successful else false.
+     */
+    bool DOCTOR_PILL_EXPORT init(QQmlApplicationEngine *engine);
+
+}

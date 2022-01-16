@@ -6,12 +6,23 @@
 //#
 
 #include "doctorpill.h"
+#include <QQmlApplicationEngine>
 
+namespace DP {
 
-namespace DoctorPill {
+bool init(QQmlApplicationEngine *engine) {
 
-bool init() {
+    if (!engine)
+        return false;
+
+    auto root = engine->rootContext();
+    if (!root)
+        return false;
+
     initDoctorPillResources();
+
+    engine->addImportPath(":/");
+
     return true;
 }
 

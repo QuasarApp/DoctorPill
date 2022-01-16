@@ -3,14 +3,13 @@ import QtQuick.Controls 2.15
 import QtQuick.Controls.Material 2.15
 import QtQuick.Layouts 1.15
 
-import "Style"
-
-CPage {
+Page {
     id: root;
     property var model : null
     implicitHeight: 0x0
 
-    title: qsTr("Doctor page. The Doctor can help you to fix your app.");
+    signal contactWithDevsPressed();
+
     ColumnLayout {
 
         Label {
@@ -31,6 +30,9 @@ CPage {
         Button {
             id: contactButton
             text: qsTr("Contact with Developers");
+            onClicked: {
+                contactWithDevsPressed();
+            }
         }
 
         ProgressBar {

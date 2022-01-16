@@ -21,7 +21,7 @@ struct Issue {
 /**
  * @brief The PillsModel class This is gui model of available pills.
  */
-class PillsModel: public QAbstractListModel
+class DoctorModel: public QAbstractListModel
 {
     Q_OBJECT
 
@@ -38,7 +38,7 @@ class PillsModel: public QAbstractListModel
     };
 
 public:
-    PillsModel(const QList<QSharedPointer<iPill>> &base);
+    DoctorModel(const QList<QSharedPointer<iPill>> &base);
     void addPill(const QSharedPointer<iPill>& pill);
 
     int rowCount(const QModelIndex &parent = {}) const override;
