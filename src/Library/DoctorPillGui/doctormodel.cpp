@@ -7,13 +7,30 @@
 
 #include "doctormodel.h"
 #include <QHash>
+#include <QtConcurrent>
 
 namespace DP {
 
 DoctorModel::DoctorModel(const QList<QSharedPointer<iPill>> &base):
     _doctor(base)
 {
+    connect(&_doctor, &Doctor::sigDiagnosticFinished,
+           this, &DoctorModel::handleDiagnostcFinished,
+           Qt::QueuedConnection);
 
+    connect(&_doctor, &Doctor::sigDiagnosticProgressChanged,
+           this, &DoctorModel::handleDiagnosticProgressChanged,
+           Qt::QueuedConnection);
+
+    connect(&_doctor, &Doctor::sigFixesFailed,
+           this, &DoctorModel::handleFixFailed,
+           Qt::QueuedConnection);
+
+    connect(&_doctor, &Doctor::sigFixesFinishedSuccessful,
+           this, &DoctorModel::handleFixSuccessful,
+           Qt::QueuedConnection);
+
+    setState(ViewState::BeginDiagnostic);
 }
 
 int DoctorModel::rowCount(const QModelIndex &) const {
@@ -67,7 +84,16 @@ void DoctorModel::usePill(QString pillName) {
 }
 
 void DoctorModel::diagnostic() {
+
     _doctor.diagnostic();
+
+    auto work = [this](){
+        _doctor.diagnostic();
+    };
+
+    setState(ViewState::SearchBugs);
+
+    auto val = QtConcurrent::run(work);
 }
 
 void DoctorModel::handleFixFailed(QList<QSharedPointer<iPill>> failed) {
@@ -84,15 +110,46 @@ void DoctorModel::handleFixSuccessful(QList<QSharedPointer<iPill>> successful) {
     }
 }
 
-void DoctorModel::handleBugDetected(QList<QSharedPointer<iPill>> bugDetected) {
-
+void DoctorModel::handleDiagnostcFinished(QList<QSharedPointer<iPill> > issues) {
     beginResetModel();
 
     _viewData.clear();
-    for (const auto &pill : qAsConst(bugDetected)) {
+    for (const auto &pill : qAsConst(issues)) {
         _viewData[pill->name()] = Issue{0, pill};
     }
 
     endResetModel();
+
+    if (_viewData.size())
+        setState(ViewState::BugFound);
+    else
+        setState(ViewState::AllIsFine);
+
+}
+
+void DoctorModel::handleDiagnosticProgressChanged(float progress) {
+    setProgress(progress);
+}
+
+double DoctorModel::progress() const {
+    return _progress;
+}
+
+void DoctorModel::setProgress(double newProgress) {
+    if (qFuzzyCompare(_progress, newProgress))
+        return;
+    _progress = newProgress;
+    emit progressChanged();
+}
+
+int DoctorModel::state() const {
+    return _state;
+}
+
+void DoctorModel::setState(int newState) {
+    if (_state == newState)
+        return;
+    _state = newState;
+    emit stateChanged();
 }
 }

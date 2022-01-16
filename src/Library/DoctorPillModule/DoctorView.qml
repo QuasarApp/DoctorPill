@@ -10,26 +10,42 @@ Page {
 
     signal contactWithDevsPressed();
 
-    ColumnLayout {
+    contentItem: ColumnLayout {
 
         Label {
             id: atansionMsg
             text: qsTr("Attention: Please use this page only if you knows what you do. If your application works correctly then please - do nothing.");
+            horizontalAlignment: Qt.AlignHCenter
+            verticalAlignment: Qt.AlignVCenter
+            wrapMode: Label.WordWrap
+            Layout.fillWidth: true
+
         }
 
         Label {
             id: descriptionMsg
             text: qsTr("This is your personal application doctor room! The doctor automatically check your application to exits errors. If the Doctor found any errors he suggest solution of your issue");
+            horizontalAlignment: Qt.AlignHCenter
+            verticalAlignment: Qt.AlignVCenter
+            wrapMode: Label.WordWrap
+            Layout.fillWidth: true
+
         }
 
         Label {
             id: allIsFineMsg
             text: qsTr("The Doctor not found any issues. If you sure that application is works wrong then you can contact with developers.");
+            horizontalAlignment: Qt.AlignHCenter
+            verticalAlignment: Qt.AlignVCenter
+            wrapMode: Label.WordWrap
+            Layout.fillWidth: true
+
         }
 
         Button {
             id: contactButton
             text: qsTr("Contact with Developers");
+            Layout.alignment: Qt.AlignHCenter
             onClicked: {
                 contactWithDevsPressed();
             }
@@ -43,6 +59,7 @@ Page {
         Button {
             id: diagnosticButton
             text: qsTr("Diagnostic");
+            Layout.alignment: Qt.AlignHCenter
 
             onClicked: {
                 if (root.model) {
@@ -102,7 +119,8 @@ Page {
         }
     }
 
-    state: "beginDiagnostic"
+    state: (root.model)? privateRoot.getState(root.model.state): "beginDiagnostic"
+
 
     //beginDiagnostic
     //searchBugs
@@ -261,4 +279,17 @@ Page {
             }
         }
     ]
+
+    Item {
+        id: privateRoot
+
+        function getState(state) {
+            switch(state) {
+            case 0: return "beginDiagnostic";
+            case 1: return "searchBugs";
+            case 2: return "bugFound";
+            case 3: return "allIsFine";
+            }
+        }
+    }
 }

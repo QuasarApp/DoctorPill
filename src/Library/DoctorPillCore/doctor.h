@@ -39,6 +39,7 @@ public:
      * @see Doctor::addPill
      * @see Doctor::sigFixesFailed
      * @see Doctor::sigFixesFinishedSuccessful
+     * @see Doctor::sigDiagnosticFinished
     */
     void diagnostic(bool fix = false) const;
 
@@ -64,14 +65,14 @@ public:
     void addPill(const QSharedPointer<iPill>& pill);
 signals:
     /**
-     * @brief sigTroubleDetected This signal will emited when The doctor object found issues in this application.
+     * @brief sigDiagnosticFinished This signal will emited when The doctor object found issues in this application.
      * @param issues this is list of detected issues.
      * @see Doctor::diagnostic
      * @see Doctor::fix
      * @see Doctor::sigFixesFailed
      * @see Doctor::sigFixesFinishedSuccessful
      */
-    void sigTroubleDetected(QList<QSharedPointer<iPill>> issues) const;
+    void sigDiagnosticFinished(QList<QSharedPointer<iPill>> issues) const;
 
     /**
      * @brief sigFixesFailed This signal emited when the doctor can't fix foundet issues.
@@ -85,6 +86,11 @@ signals:
      */
     void sigFixesFinishedSuccessful(QList<QSharedPointer<iPill>> issues) const;
 
+    /**
+     * @brief sigDiagnosticProgressChanged This signal emitted when progress of diagnstic changed.
+     * @param progress This is ptogress of diagnostic process from 0 to 1
+     */
+    void sigDiagnosticProgressChanged(float progress) const;
 private:
     QList<QSharedPointer<iPill>> _pillsData;
 };

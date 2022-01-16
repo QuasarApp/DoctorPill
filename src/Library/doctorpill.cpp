@@ -26,5 +26,4 @@ bool init(QQmlApplicationEngine *engine) {
     return true;
 }
 
-
 }

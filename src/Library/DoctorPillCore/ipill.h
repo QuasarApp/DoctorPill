@@ -11,6 +11,8 @@
 
 #include <QString>
 #include "doctorpill_global.h"
+#include <QMetaType>
+#include <QSharedPointer>
 
 namespace DP {
 
@@ -70,5 +72,10 @@ protected:
     friend class DoctorTest;
 };
 
+
 }
+
+Q_DECLARE_METATYPE(QSharedPointer<DP::iPill>);
+Q_DECLARE_METATYPE(QList<QSharedPointer<DP::iPill>>);
+
 #endif // IPILL_H

@@ -35,8 +35,8 @@ add_library(${PROJECT_NAME} ${SOURCE_CPP} ${SOURCE_QRC} ${SOURCE_CPP_GUI})
 target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Core )
 
 if (DOCTOR_PILL_GUI)
-    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Quick REQUIRED)
-    target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Quick )
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Quick Concurrent REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Concurrent Qt${QT_VERSION_MAJOR}::Quick )
 endif()
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PUBLIC_INCUDE_DIR})
@@ -56,5 +56,5 @@ set(LANGS ${CMAKE_CURRENT_SOURCE_DIR}/languages/en.ts
 
 prepareQM(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/../ "${LANGS}")
 
-set(QML_IMPORT_PATH ${QML_IMPORT_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/src" CACHE STRING "" FORCE)
+set(QML_IMPORT_PATH ${QML_IMPORT_PATH} "${CMAKE_CURRENT_SOURCE_DIR}" CACHE STRING "" FORCE)
 

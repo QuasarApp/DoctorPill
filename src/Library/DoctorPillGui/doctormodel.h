@@ -9,14 +9,10 @@
 #define PILLSMODEL_H
 
 #include <QAbstractListModel>
+#include <QFuture>
 #include <DoctorPillCore/doctor.h>
 
 namespace DP {
-
-struct Issue {
-    int _status = 0;
-    QSharedPointer<iPill> _pill = nullptr;
-};
 
 /**
  * @brief The PillsModel class This is gui model of available pills.
@@ -24,8 +20,16 @@ struct Issue {
 class DoctorModel: public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(double progress READ progress WRITE setProgress NOTIFY progressChanged)
+    Q_PROPERTY(int state READ state WRITE setState NOTIFY stateChanged)
+
+    struct Issue {
+        int _status = 0;
+        QSharedPointer<iPill> _pill = nullptr;
+    };
 
     enum Roles {
+
         Name = Qt::UserRole,
         Description,
         Status
@@ -37,7 +41,15 @@ class DoctorModel: public QAbstractListModel
         Failed
     };
 
+    enum ViewState {
+        BeginDiagnostic,
+        SearchBugs,
+        BugFound,
+        AllIsFine,
+    };
+
 public:
+
     DoctorModel(const QList<QSharedPointer<iPill>> &base);
     void addPill(const QSharedPointer<iPill>& pill);
 
@@ -48,14 +60,29 @@ public:
     Q_INVOKABLE void usePill(QString pillName);
     Q_INVOKABLE void diagnostic();
 
+    double progress() const;
+    int state() const;
+
+signals:
+    void progressChanged();
+
+    void stateChanged();
+
 private slots:
     void handleFixFailed(QList<QSharedPointer<iPill>>);
     void handleFixSuccessful(QList<QSharedPointer<iPill>>);
-    void handleBugDetected(QList<QSharedPointer<iPill>>);
+    void handleDiagnostcFinished(QList<QSharedPointer<iPill>>);
+    void handleDiagnosticProgressChanged(float);
 
 private:
+    void setProgress(double newProgress);
+    void setState(int newState);
+
+    int _state;
     Doctor _doctor;
     QHash<QString, Issue> _viewData;
+    double _progress;
+    QFuture<void> _diagnosticWork;
 };
 
 }

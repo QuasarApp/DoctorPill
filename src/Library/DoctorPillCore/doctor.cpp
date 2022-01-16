@@ -13,6 +13,8 @@ namespace DP {
 
 Doctor::Doctor(const QList<QSharedPointer<iPill> > &base) {
     _pillsData = base;
+
+    qRegisterMetaType<QList<QSharedPointer<iPill> >>();
 }
 
 void Doctor::diagnostic(bool fix) const {
@@ -21,6 +23,10 @@ void Doctor::diagnostic(bool fix) const {
     QList<QSharedPointer<iPill> > detected;
     QList<QSharedPointer<iPill> > fixedSuccessful;
 
+    float progress = 0;
+    float progressStep = 1.0f / _pillsData.size();
+
+    emit sigDiagnosticProgressChanged(progress);
     for (const auto &pill: _pillsData) {
         if (pill->diagnostic()) {
             if (fix) {
@@ -33,15 +39,16 @@ void Doctor::diagnostic(bool fix) const {
                 detected.push_back(pill);
             }
         }
+
+        progress += progressStep;
+        emit sigDiagnosticProgressChanged(progress);
     }
 
     if (failed.size()) {
         emit sigFixesFailed(failed);
     }
 
-    if (detected.count()) {
-        emit sigTroubleDetected(detected);
-    }
+    emit sigDiagnosticFinished(detected);
 
     if (fixedSuccessful.count()) {
         emit sigFixesFinishedSuccessful(fixedSuccessful);
