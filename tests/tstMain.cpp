@@ -6,7 +6,7 @@
 //#
 
 #include <QtTest>
-#include "exampletest.h"
+#include "basetest.h"
 
 // Use This macros for initialize your own test classes.
 // Check exampletests
@@ -32,7 +32,7 @@ private slots:
 
 
     // BEGIN TESTS CASES
-    TestCase(exampleTest, ExampleTest)
+    TestCase(baseTest, BaseTest)
     // END TEST CASES
 
 private:

@@ -6,4 +6,9 @@
     <qresource prefix="/DoctorPillTr">
         <file>languages/en.qm</file>
     </qresource>
+    <qresource prefix="/icons">
+        <file>icons/Failed.png</file>
+        <file>icons/Found.png</file>
+        <file>icons/Solved.png</file>
+    </qresource>
 </RCC>

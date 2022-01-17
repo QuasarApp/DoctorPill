@@ -32,7 +32,8 @@ class DoctorModel: public QAbstractListModel
 
         Name = Qt::UserRole,
         Description,
-        Status
+        Status,
+        Row
     };
 
     enum IssueStatus {
@@ -59,6 +60,7 @@ public:
 
     Q_INVOKABLE void usePill(QString pillName);
     Q_INVOKABLE void diagnostic();
+    Q_INVOKABLE void drop(int row);
 
     double progress() const;
     int state() const;

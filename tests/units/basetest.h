@@ -6,21 +6,29 @@
 //#
 
 
-#ifndef EXAMPLE_TEST_H
-#define EXAMPLE_TEST_H
+#ifndef BASE_TEST_H
+#define BASE_TEST_H
 #include "test.h"
 #include "testutils.h"
+#include "DoctorPillCore/doctortest.h"
 
 #include <QtTest>
 
-class ExampleTest: public Test, protected TestUtils
+class BaseTest: public Test, protected TestUtils
 {
 public:
-    ExampleTest();
-    ~ExampleTest();
+    BaseTest();
+    ~BaseTest();
 
     void test();
 
+private:
+    DP::DoctorTest _test;
+
+    friend class TestPill;
+
+    bool _appIsBroken = true;
+
 };
 
-#endif // EXAMPLE_TEST_H
+#endif // BASE_TEST_H

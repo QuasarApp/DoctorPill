@@ -49,6 +49,10 @@ QVariant DoctorModel::data(const QModelIndex &index, int role) const {
         return "Internal Error";
     }
 
+    if ( role == Roles::Row) {
+        return index.row();
+    }
+
     if (role == Roles::Name) {
         return item._pill->name();
     }
@@ -70,17 +74,22 @@ QHash<int, QByteArray> DoctorModel::roleNames() const {
     roles[Roles::Name] = "issueName";
     roles[Roles::Description] = "issueDescription";
     roles[Roles::Status] = "issueStatus";
+    roles[Roles::Row] = "row";
 
     return roles;
 }
 
 void DoctorModel::usePill(QString pillName) {
 
-    auto pill = _viewData.value(pillName, {});
-    if (!pill._pill)
-        return;
+    auto work = [this, pillName](){
+        auto pill = _viewData.value(pillName, {});
+        if (!pill._pill)
+            return;
 
-    _doctor.fix({pill._pill});
+        _doctor.fix({pill._pill});
+    };
+
+    auto val = QtConcurrent::run(work);
 }
 
 void DoctorModel::diagnostic() {
@@ -94,18 +103,41 @@ void DoctorModel::diagnostic() {
     auto val = QtConcurrent::run(work);
 }
 
+void DoctorModel::drop(int row) {
+    if (row < 0 || row >= rowCount()) {
+        return;
+    }
+
+    beginRemoveRows(QModelIndex{}, row, row);
+    _viewData.erase(std::next(_viewData.begin(), row));
+    endRemoveRows();
+
+    if (!_viewData.size()) {
+        setState(ViewState::AllIsFine);
+    }
+}
+
 void DoctorModel::handleFixFailed(QList<QSharedPointer<iPill>> failed) {
+
 
     for (const auto &pill : qAsConst(failed)) {
         _viewData[pill->name()]._status = static_cast<int>(IssueStatus::Failed);
     }
+
+    emit dataChanged(index(0,0), index(rowCount() - 1, 0),
+                     QVector<int>() << Roles::Status);
+
 }
 
 void DoctorModel::handleFixSuccessful(QList<QSharedPointer<iPill>> successful) {
 
+
     for (const auto &pill : qAsConst(successful)) {
         _viewData[pill->name()]._status = static_cast<int>(IssueStatus::Solved);
     }
+
+    emit dataChanged(index(0,0), index(rowCount() - 1, 0),
+                     QVector<int>() << Roles::Status);
 }
 
 void DoctorModel::handleDiagnostcFinished(QList<QSharedPointer<iPill> > issues) {

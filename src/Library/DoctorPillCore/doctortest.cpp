@@ -24,7 +24,7 @@ bool DoctorTest::test(const QSharedPointer<iPill> &pill,
         return false;
     }
 
-    return pill->diagnostic();
+    return !pill->diagnostic();
 }
 
 }
