@@ -35,6 +35,7 @@ option(DOCTOR_PILL_GUI "Enable gui qml model for build" ON)
 option(DOCTOR_PILL_TESTS "Enable tests of this library" ON)
 option(DOCTOR_PILL_EXAMPLE "Enable example app of this library" ON)
 
+make_directory(Distro)
 if (DEFINED TARGET_PLATFORM_TOOLCHAIN)
     if (${TARGET_PLATFORM_TOOLCHAIN} STREQUAL "wasm32")
         set(DOCTOR_PILL_TESTS OFF)
