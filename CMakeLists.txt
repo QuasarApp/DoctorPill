@@ -29,7 +29,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 include(submodules/CMake/QuasarApp.cmake)
 
 updateGitVars()
-set(DoctorPill_VERSION "0.${GIT_COMMIT_COUNT}.${GIT_COMMIT_HASH}")
+set(DOCTOR_PILL_VERSION "0.${GIT_COMMIT_COUNT}.${GIT_COMMIT_HASH}")
 
 option(DOCTOR_PILL_GUI "Enable gui qml model for build" ON)
 option(DOCTOR_PILL_TESTS "Enable tests of this library" ON)

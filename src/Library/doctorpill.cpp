@@ -27,6 +27,11 @@ bool init(QQmlApplicationEngine *engine) {
 
     return true;
 }
+
+QString version() {
+    return DOCTOR_PILL_VERSION;
+}
+
 #else
 bool init() {
     return true;

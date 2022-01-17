@@ -30,6 +30,8 @@ endif()
 set(PUBLIC_INCUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 set(PRIVATE_INCUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/private")
 
+set(global_file "${CMAKE_CURRENT_SOURCE_DIR}/doctorpill_global.h")
+configure_file("${global_file}.in" ${global_file} @ONLY)
 
 add_library(${PROJECT_NAME} ${SOURCE_CPP} ${SOURCE_QRC} ${SOURCE_CPP_GUI})
 target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Core )

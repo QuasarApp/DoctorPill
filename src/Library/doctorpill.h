@@ -45,4 +45,10 @@ namespace DP {
      */
     bool DOCTOR_PILL_EXPORT init();
 #endif
+
+    /**
+     * @brief version This method return string value of lib version
+     * @return string value of lib version.
+     */
+    QString version();
 }

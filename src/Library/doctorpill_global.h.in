@@ -16,5 +16,7 @@
 #  define DOCTOR_PILL_EXPORT Q_DECL_IMPORT
 #endif
 
+#define DOCTOR_PILL_VERSION "@DOCTOR_PILL_VERSION@"
+
 #endif //DoctorPill_GLOBAL_H
 
