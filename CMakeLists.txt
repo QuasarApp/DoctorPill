@@ -20,9 +20,6 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if (ANDROID OR IOS)
-    set(BUILD_SHARED_LIBS ON)
-endif()
 
 if (NOT QT_VERSION_MAJOR)
     find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
@@ -34,7 +31,7 @@ include(submodules/CMake/QuasarApp.cmake)
 updateGitVars()
 set(DoctorPill_VERSION "0.${GIT_COMMIT_COUNT}.${GIT_COMMIT_HASH}")
 
-option(DOCTOR_PILL_GUI "Enable gui qml model for build" OFF)
+option(DOCTOR_PILL_GUI "Enable gui qml model for build" ON)
 option(DOCTOR_PILL_TESTS "Enable tests of this library" ON)
 option(DOCTOR_PILL_EXAMPLE "Enable example app of this library" ON)
 
@@ -56,9 +53,15 @@ endif()
 
 initAll()
 
+if (DOCTOR_PILL_GUI)
+    add_definitions(-DDOCTOR_PILL_GUI ON)
+else()
+    set(DOCTOR_PILL_EXAMPLE OFF)
+endif()
+
 add_subdirectory(src/Library)
 
-if (DEFINED DOCTOR_PILL_EXAMPLE)
+if (DOCTOR_PILL_EXAMPLE)
     add_subdirectory(src/Example)
 endif()
 

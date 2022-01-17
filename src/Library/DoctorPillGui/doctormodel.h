@@ -20,6 +20,7 @@ namespace DP {
 class DoctorModel: public QAbstractListModel
 {
     Q_OBJECT
+
     Q_PROPERTY(double progress READ progress WRITE setProgress NOTIFY progressChanged)
     Q_PROPERTY(int state READ state WRITE setState NOTIFY stateChanged)
 

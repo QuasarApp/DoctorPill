@@ -6,10 +6,12 @@
 //#
 
 #include "doctorpill.h"
+#ifdef DOCTOR_PILL_GUI
 #include <QQmlApplicationEngine>
-
+#endif
 namespace DP {
 
+#ifdef DOCTOR_PILL_GUI
 bool init(QQmlApplicationEngine *engine) {
 
     if (!engine)
@@ -25,5 +27,10 @@ bool init(QQmlApplicationEngine *engine) {
 
     return true;
 }
+#else
+bool init() {
+    return true;
+}
 
+#endif
 }
