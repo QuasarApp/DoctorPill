@@ -85,8 +85,6 @@ void DoctorModel::usePill(QString pillName) {
 
 void DoctorModel::diagnostic() {
 
-    _doctor.diagnostic();
-
     auto work = [this](){
         _doctor.diagnostic();
     };
