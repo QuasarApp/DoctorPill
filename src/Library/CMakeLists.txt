@@ -11,15 +11,15 @@ add_definitions(-DDOCTOR_PILL_LIBRARY)
 
 file(GLOB SOURCE_CPP
     "*.cpp"
-    "*DoctorPillCore/*.cpp"
+    "DoctorPillCore/*.cpp"
     "*.h"
-    "*DoctorPillCore/*.h"
+    "DoctorPillCore/*.h"
 )
 
 if (DOCTOR_PILL_GUI)
     file(GLOB SOURCE_CPP_GUI
-        "*DoctorPillGui/*.cpp"
-        "*DoctorPillGui/*.h"
+        "DoctorPillGui/*.cpp"
+        "DoctorPillGui/*.h"
 
     )
 
@@ -30,6 +30,7 @@ if (DOCTOR_PILL_GUI)
 
 endif()
 
+set(ALL_SOURCES ${SOURCE_CPP} ${SOURCE_QRC} ${SOURCE_CPP_GUI})
 
 set(PUBLIC_INCUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 set(PRIVATE_INCUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/private")
@@ -37,7 +38,7 @@ set(PRIVATE_INCUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/private")
 set(global_file "${CMAKE_CURRENT_SOURCE_DIR}/doctorpill_global.h")
 configure_file("${global_file}.in" ${global_file} @ONLY)
 
-add_library(${PROJECT_NAME} ${SOURCE_CPP} ${SOURCE_QRC} ${SOURCE_CPP_GUI})
+add_library(${PROJECT_NAME} ${ALL_SOURCES})
 target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Core )
 
 if (DOCTOR_PILL_GUI)
