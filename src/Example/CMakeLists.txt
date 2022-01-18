@@ -12,44 +12,25 @@ set(CURRENT_PROJECT "${PROJECT_NAME}Eaxample")
 file(GLOB SOURCE_CPP
     "*.cpp"
      "Private/*.cpp"
+     "*.qrc"
+     "Private/*.qrc"
 )
-
-if (${QT_VERSION_MAJOR})
-    file(GLOB SOURCE_QRC
-        "*.qrc"
-        "Private/*.qrc"
-    )
-
-endif()
-
-set(ALL_SOURCES ${SOURCE_CPP} ${SOURCE_QRC})
-
-set(PUBLIC_INCUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
-
-set(PRIVATE_INCUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Private")
-
-updateGitVars()
 
 if (${QT_VERSION_MAJOR} EQUAL 6)
 
-    qt_add_executable(${CURRENT_PROJECT} MANUAL_FINALIZATION ${ALL_SOURCES})
+    qt_add_executable(${CURRENT_PROJECT} MANUAL_FINALIZATION ${SOURCE_CPP})
 
 else()
     if (ANDROID)
-        add_library(${CURRENT_PROJECT} ${ALL_SOURCES})
+        add_library(${CURRENT_PROJECT} ${SOURCE_CPP})
     else ()
-        add_executable(${CURRENT_PROJECT} ${ALL_SOURCES} )
+        add_executable(${CURRENT_PROJECT} ${SOURCE_CPP} )
     endif()
 
 endif()
 
 target_link_libraries(${CURRENT_PROJECT} PUBLIC ${PROJECT_NAME})
-
-target_include_directories(${CURRENT_PROJECT} PUBLIC ${PUBLIC_INCUDE_DIR})
-target_include_directories(${CURRENT_PROJECT} PRIVATE ${PRIVATE_INCUDE_DIR})
-
-SET(TARGET_DIR "${CMAKE_SOURCE_DIR}/Distro")
-file(MAKE_DIRECTORY ${TARGET_DIR})
+target_include_directories(${CURRENT_PROJECT} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 if(QT_VERSION_MAJOR EQUAL 6)
     # Add This line if your project use the Quick module

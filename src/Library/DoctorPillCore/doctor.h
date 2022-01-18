@@ -9,7 +9,6 @@
 #define DOCTOR_H
 
 #include "ipill.h"
-#include "doctorpill_global.h"
 #include <QSharedPointer>
 
 namespace DP {

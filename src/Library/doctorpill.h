@@ -5,9 +5,10 @@
 //# of this license document, but changing it is not allowed.
 //#
 
+#ifndef DOCTOR_PILL_H
+#define DOCTOR_PILL_H
 
 #include "DoctorPillCore/doctor.h"
-#include "DoctorPillCore/ipill.h"
 #include "DoctorPillCore/doctortest.h"
 
 #ifdef DOCTOR_PILL_GUI
@@ -52,3 +53,5 @@ namespace DP {
      */
     QString version();
 }
+
+#endif // DOCTOR_PILL_H

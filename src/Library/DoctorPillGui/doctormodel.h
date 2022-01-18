@@ -5,11 +5,10 @@
 //# of this license document, but changing it is not allowed.
 //#
 
-#ifndef PILLSMODEL_H
-#define PILLSMODEL_H
+#ifndef DOCTORMODEL_H
+#define DOCTORMODEL_H
 
 #include <QAbstractListModel>
-#include <QFuture>
 #include <DoctorPillCore/doctor.h>
 
 namespace DP {
@@ -123,9 +122,9 @@ signals:
     void stateChanged();
 
 private slots:
-    void handleFixFailed(QList<QSharedPointer<iPill>>);
-    void handleFixSuccessful(QList<QSharedPointer<iPill>>);
-    void handleDiagnostcFinished(QList<QSharedPointer<iPill>>);
+    void handleFixFailed(QList<QSharedPointer<DP::iPill>>);
+    void handleFixSuccessful(QList<QSharedPointer<DP::iPill>>);
+    void handleDiagnostcFinished(QList<QSharedPointer<DP::iPill>>);
     void handleDiagnosticProgressChanged(float);
 
 private:
@@ -136,8 +135,7 @@ private:
     Doctor _doctor;
     QHash<QString, Issue> _viewData;
     double _progress;
-    QFuture<void> _diagnosticWork;
 };
 
 }
-#endif // PILLSMODEL_H
+#endif // DOCTORMODEL_H

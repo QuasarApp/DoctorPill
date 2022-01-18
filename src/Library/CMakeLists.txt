@@ -12,11 +12,15 @@ add_definitions(-DDOCTOR_PILL_LIBRARY)
 file(GLOB SOURCE_CPP
     "*.cpp"
     "*DoctorPillCore/*.cpp"
+    "*.h"
+    "*DoctorPillCore/*.h"
 )
 
 if (DOCTOR_PILL_GUI)
     file(GLOB SOURCE_CPP_GUI
         "*DoctorPillGui/*.cpp"
+        "*DoctorPillGui/*.h"
+
     )
 
     file(GLOB SOURCE_QRC
