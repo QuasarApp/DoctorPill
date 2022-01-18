@@ -179,7 +179,7 @@ Page {
                     }
 
                     Button {
-                        text: qsTr("Repair");
+                        text: qsTr("Fix");
                         visible: issueStatus === 0
                         onClicked: {
                             if (root.model) {

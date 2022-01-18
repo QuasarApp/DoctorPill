@@ -10,6 +10,6 @@ ApplicationWindow {
 
     DoctorView {
         anchors.fill: parent
-        model: (doctorPillMpdel)? doctorPillMpdel: null
+        model: (doctorPillModel)? doctorPillModel: null
     }
 }

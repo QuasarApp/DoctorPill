@@ -16,7 +16,7 @@ namespace DP {
 /**
  * @brief The PillsModel class This is gui model of available pills.
  */
-class DoctorModel: public QAbstractListModel
+class DOCTOR_PILL_EXPORT DoctorModel: public QAbstractListModel
 {
     Q_OBJECT
 

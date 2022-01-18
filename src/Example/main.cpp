@@ -133,7 +133,7 @@ int main(int argc, char *argv[]) {
 
     QQmlContext* rootContext = engine.rootContext();
     if (rootContext)
-        rootContext->setContextProperty("doctorPillMpdel", &model);
+        rootContext->setContextProperty("doctorPillModel", &model);
 
     return app.exec();
 }

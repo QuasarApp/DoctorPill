@@ -40,9 +40,9 @@ file(MAKE_DIRECTORY ${TARGET_DIR})
 
 if (DEFINED TARGET_PLATFORM_TOOLCHAIN)
     if (${TARGET_PLATFORM_TOOLCHAIN} STREQUAL "wasm32")
-        set(DOCTOR_PILL_TESTS OFF)
-        set(DOCTOR_PILL_EXAMPLE OFF)
-        message("Disable DOCTOR_PILL_TESTS and DOCTOR_PILL_EXAMPLE for wasm paltform because wasm not support tests and an example.")
+        message("This library depend of the qt concurent library, but The concurent is not available in qt wasm")
+        initAll()
+        return()
     endif()
 endif()
 
