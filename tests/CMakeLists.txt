@@ -12,8 +12,8 @@ set(CURRENT_PROJECT ${PROJECT_NAME}Test)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Test REQUIRED)
 
 file(GLOB SOURCE_CPP
-    "*.cpp" "*.qrc"
-    "units/*.cpp" "units/*.qrc"
+    "*.cpp" "*.h" "*.qrc"
+    "units/*.cpp" "units/*.h" "units/*.qrc"
 )
 set(PUBLIC_INCUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 set(PUBLIC_INCUDE_DIR ${PUBLIC_INCUDE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/units")
