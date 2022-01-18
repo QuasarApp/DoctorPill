@@ -5,6 +5,10 @@ The library has c++ interface DP::iPill and QML view for diagnostic gui applicat
 
 For Disable the gui part of the library use the DOCTOR_PILL_GUI option.
 
+
+![2022-01-18 17-50-20](https://user-images.githubusercontent.com/12465465/149961627-2f74d25d-f047-4176-913b-6d3f833603cf.gif)
+
+
 ## BUILD OPTIONS
 
 ``` cmake 
@@ -143,3 +147,4 @@ ApplicationWindow {
 }
 
 ```
+

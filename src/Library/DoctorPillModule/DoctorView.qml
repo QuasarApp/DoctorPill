@@ -6,12 +6,32 @@ import QtQuick.Layouts 1.15
 Page {
     id: root;
     property var model : null
+
+    property bool showDescription: true
+    property bool showTitle: true
+
     implicitHeight: 0x0
 
     signal contactWithDevsPressed();
 
+    title: qsTr("Application doctor room");
+
+    header: Label {
+        horizontalAlignment: Label.AlignHCenter
+        text: title
+        font.pointSize: 20
+        color: "#424242"
+        wrapMode: Label.WordWrap
+        visible: showTitle
+    }
+
     contentItem: ColumnLayout {
 
+        spacing: 20
+
+        Item {
+            Layout.fillHeight: !list.visible
+        }
 
         Label {
             id: descriptionMsg
@@ -211,6 +231,11 @@ Page {
                 }
             }
         }
+
+        Item {
+            Layout.fillHeight: !list.visible
+        }
+
     }
 
     state: (root.model)? privateRoot.getState(root.model.state): "beginDiagnostic"
@@ -225,12 +250,12 @@ Page {
             name: "beginDiagnostic"
             PropertyChanges {
                 target: atansionMsg;
-                visible: true
+                visible: showDescription
             }
 
             PropertyChanges {
                 target: descriptionMsg;
-                visible: true
+                visible: showDescription
             }
 
             PropertyChanges {
