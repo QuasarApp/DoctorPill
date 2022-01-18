@@ -47,5 +47,9 @@
         <source>Fix</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Application doctor room</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
