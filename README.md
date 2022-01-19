@@ -93,7 +93,8 @@ For working with gui wrapper you need to initialize this library before include 
 
 #### initialize the library (main.cpp)
 
-``` cpp
+
+```cpp
 
 int main(int argc, char *argv[]) {
     QCoreApplication::setOrganizationName("QuasarApp");
@@ -129,6 +130,7 @@ int main(int argc, char *argv[]) {
 
 
 ```qml
+
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Controls.Material 2.15

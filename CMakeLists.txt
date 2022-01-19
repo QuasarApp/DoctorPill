@@ -56,9 +56,7 @@ endif()
 
 initAll()
 
-if (DOCTOR_PILL_GUI)
-    add_definitions(-DDOCTOR_PILL_GUI)
-else()
+if (NOT DOCTOR_PILL_GUI)
     set(DOCTOR_PILL_EXAMPLE OFF)
 endif()
 

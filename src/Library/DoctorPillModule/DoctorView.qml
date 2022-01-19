@@ -20,7 +20,7 @@ Page {
         horizontalAlignment: Label.AlignHCenter
         text: title
         font.pointSize: 20
-        color: "#424242"
+        color: (Material.theme === Material.Light)? "#424242" : "#aaaaaa"
         wrapMode: Label.WordWrap
         visible: showTitle
     }
@@ -127,6 +127,8 @@ Page {
                 onClicked: {
                     if (root.model) {
                         root.model.diagnostic();
+                    } else {
+                        console.warn("The DoctorView require model object.")
                     }
                 }
             }

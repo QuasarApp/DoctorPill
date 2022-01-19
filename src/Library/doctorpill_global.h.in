@@ -17,6 +17,7 @@
 #endif
 
 #define DOCTOR_PILL_VERSION "@DOCTOR_PILL_VERSION@"
+#define @DOCTOR_PILL_DEFINE@
 
 #endif //DoctorPill_GLOBAL_H
 

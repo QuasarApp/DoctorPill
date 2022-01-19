@@ -11,7 +11,7 @@
 #include "DoctorPillCore/doctor.h"
 #include "DoctorPillCore/doctortest.h"
 
-#ifdef DOCTOR_PILL_GUI
+#ifdef DOCTOR_PILL_WITH_GUI
 
 #include "DoctorPillGui/doctormodel.h"
 
@@ -27,7 +27,7 @@ class QQmlApplicationEngine;
  */
 namespace DP {
 
-#ifdef DOCTOR_PILL_GUI
+#ifdef DOCTOR_PILL_WITH_GUI
 /**
      * @brief init This function initialize the qml gui classes of the DoctorPill library.
      * @note if you do not use GUI then this function do nothing.
