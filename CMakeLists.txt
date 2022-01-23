@@ -53,14 +53,15 @@ if (ANDROID OR IOS)
 
 endif()
 
-
 initAll()
+
+add_subdirectory(src/Core)
 
 if (NOT DOCTOR_PILL_GUI)
     set(DOCTOR_PILL_EXAMPLE OFF)
+else()
+    add_subdirectory(src/GUI)
 endif()
-
-add_subdirectory(src/Library)
 
 if (DOCTOR_PILL_EXAMPLE)
     add_subdirectory(src/Example)

@@ -5,13 +5,11 @@
 //# of this license document, but changing it is not allowed.
 //#
 
-#include "doctorpill.h"
-#ifdef DOCTOR_PILL_WITH_GUI
+#include "doctorpillgui.h"
 #include <QQmlApplicationEngine>
-#endif
+
 namespace DP {
 
-#ifdef DOCTOR_PILL_WITH_GUI
 bool init(QQmlApplicationEngine *engine) {
 
     if (!engine)
@@ -28,14 +26,4 @@ bool init(QQmlApplicationEngine *engine) {
     return true;
 }
 
-#else
-bool init() {
-    return true;
-}
-
-#endif
-
-QString version() {
-    return DOCTOR_PILL_VERSION;
-}
 }

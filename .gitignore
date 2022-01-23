@@ -69,5 +69,6 @@ _deps
 # Configured files
 build.gradle
 AndroidManifest.xml
-src/Example/Deploy/RENAME_ME.json
-src/Library/doctorpill_global.h
+src/Example/Deploy/DoctorPill.json
+src/Core/doctorpill_global.h
+src/GUI/doctorpill_gui_global.h

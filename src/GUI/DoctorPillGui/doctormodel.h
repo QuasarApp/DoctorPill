@@ -10,13 +10,14 @@
 
 #include <QAbstractListModel>
 #include <DoctorPillCore/doctor.h>
+#include <doctorpill_gui_global.h>
 
 namespace DP {
 
 /**
  * @brief The PillsModel class This is gui model of available pills.
  */
-class DOCTOR_PILL_EXPORT DoctorModel: public QAbstractListModel
+class DOCTOR_PILL_GUI_EXPORT DoctorModel: public QAbstractListModel
 {
     Q_OBJECT
 

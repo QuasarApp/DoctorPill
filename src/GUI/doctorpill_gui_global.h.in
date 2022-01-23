@@ -5,19 +5,16 @@
 //# of this license document, but changing it is not allowed.
 //#
 
-#ifndef DoctorPill_GLOBAL_H
-#define DoctorPill_GLOBAL_H
+#ifndef DoctorPill_GUI_GLOBAL_H
+#define DoctorPill_GUI_GLOBAL_H
 
 #include <QtCore/qglobal.h>
 
-#if defined(DOCTOR_PILL_LIBRARY)
-#  define DOCTOR_PILL_EXPORT Q_DECL_EXPORT
+#if defined(DOCTOR_PILL_GUI_LIBRARY)
+#  define DOCTOR_PILL_GUI_EXPORT Q_DECL_EXPORT
 #else
-#  define DOCTOR_PILL_EXPORT Q_DECL_IMPORT
+#  define DOCTOR_PILL_GUI_EXPORT Q_DECL_IMPORT
 #endif
 
-#define DOCTOR_PILL_VERSION "@DOCTOR_PILL_VERSION@"
-#define @DOCTOR_PILL_DEFINE@
-
-#endif //DoctorPill_GLOBAL_H
+#endif //DoctorPill_GUI_GLOBAL_H
 
