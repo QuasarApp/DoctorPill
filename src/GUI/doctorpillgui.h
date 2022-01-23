@@ -29,7 +29,7 @@ namespace DP {
      *
      * @see DoctorModel
      */
-    bool DOCTOR_PILL_EXPORT init(QQmlApplicationEngine *engine);
+    bool DOCTOR_PILL_GUI_EXPORT init(QQmlApplicationEngine *engine);
 }
 
 #endif // DOCTOR_PILL_GUI_H
