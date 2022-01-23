@@ -95,6 +95,7 @@ For working with gui wrapper you need to initialize this library before include 
 
 
 ```cpp
+#include <doctorpillgui.h>
 
 int main(int argc, char *argv[]) {
     QCoreApplication::setOrganizationName("QuasarApp");
