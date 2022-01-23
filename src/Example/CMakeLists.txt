@@ -29,7 +29,7 @@ else()
 
 endif()
 
-target_link_libraries(${CURRENT_PROJECT} PUBLIC ${PROJECT_NAME})
+target_link_libraries(${CURRENT_PROJECT} PUBLIC ${PROJECT_NAME}GUI)
 target_include_directories(${CURRENT_PROJECT} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 if(QT_VERSION_MAJOR EQUAL 6)

@@ -149,7 +149,7 @@ Page {
             rightMargin: 10
             topMargin: 10
             bottomMargin: 10
-
+            clip: true
             delegate: Component {
                 RowLayout {
 

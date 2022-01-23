@@ -8,7 +8,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include <doctorpill.h>
+#include <doctorpillgui.h>
 #include <thread>
 
 class EmptyPill: public DP::iPill {

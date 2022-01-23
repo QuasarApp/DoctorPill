@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>Enter: </source>
-        <translation>Ввод: </translation>
+        <translation>Введите: </translation>
     </message>
     <message>
         <source>Drop</source>
