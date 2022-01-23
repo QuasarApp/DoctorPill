@@ -24,10 +24,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> For begin diagnosticc enter please next line: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Enter: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -48,7 +44,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Application doctor room</source>
+        <source>Application&apos;s doctor room</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> For begin diagnostic enter please the next line: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

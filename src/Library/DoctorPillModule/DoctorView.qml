@@ -14,7 +14,7 @@ Page {
 
     signal contactWithDevsPressed();
 
-    title: qsTr("Application doctor room");
+    title: qsTr("Application's doctor room");
 
     header: Label {
         horizontalAlignment: Label.AlignHCenter
@@ -46,7 +46,7 @@ Page {
         Label {
             id: atansionMsg
             text: qsTr("<b>Attention</b>: Please use this page only if you knows what you do. If your application works correctly then please - do nothing.")
-                  + qsTr(" For begin diagnosticc enter please next line: ") + "<b>" + privateRoot.enterString + "</b>";
+                  + qsTr(" For begin diagnostic enter please the next line: ") + "<b>" + privateRoot.enterString + "</b>";
             horizontalAlignment: Qt.AlignHCenter
             verticalAlignment: Qt.AlignVCenter
             wrapMode: Label.WordWrap
