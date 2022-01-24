@@ -39,4 +39,5 @@ if(QT_VERSION_MAJOR EQUAL 6)
 endif()
 
 
+addDeployFromCustomFile("DoctorPill" "${CMAKE_CURRENT_SOURCE_DIR}/Deploy/DoctorPill.json")
 
