@@ -20,7 +20,7 @@ namespace DP {
      * @brief version This method return string value of lib version
      * @return string value of lib version.
      */
-    QString version();
+    QString DOCTOR_PILL_EXPORT version();
 }
 
 #endif // DOCTOR_PILL_H
