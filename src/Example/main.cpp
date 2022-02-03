@@ -20,6 +20,10 @@ public:
         return "EmptyPill";
     };
 
+    int id() const override {
+        return typeid (this).hash_code();
+    };
+
     QString description() const override {
         return "Pill For Test. This pill cant be fixed ";
     };
@@ -47,6 +51,10 @@ public:
         return "Pill For Test. This pill cant be fixed ";
     };
 
+    int id() const override {
+        return typeid (this).hash_code();
+    };
+
 protected:
     bool diagnostic() const override {
         std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -55,6 +63,7 @@ protected:
     bool fix() const override {
         return true;
     };
+
 };
 
 
@@ -65,6 +74,10 @@ class EmptyPill2: public DP::iPill {
 public:
     QString name() const override {
         return "EmptyPill2";
+    };
+
+    int id() const override {
+        return typeid (this).hash_code();
     };
 
     QString description() const override {
@@ -88,6 +101,10 @@ class LongPill: public DP::iPill {
 public:
     QString name() const override {
         return "Long Pill ";
+    };
+
+    int id() const override {
+        return typeid (this).hash_code();
     };
 
     QString description() const override {

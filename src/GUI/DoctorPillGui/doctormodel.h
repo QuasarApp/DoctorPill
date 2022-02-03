@@ -38,7 +38,7 @@ class DOCTOR_PILL_GUI_EXPORT DoctorModel: public QAbstractListModel
         Name = Qt::UserRole,
         Description,
         Status,
-        Row
+        Id
     };
 
     /**
@@ -84,7 +84,7 @@ public:
      * @brief usePill This method try execute fix fo @a pillName pill.
      * @param pillName This is name of selected pill object.
      */
-    Q_INVOKABLE void usePill(QString pillName);
+    Q_INVOKABLE void usePill(int pillName);
 
     /**
      * @brief diagnostic This method run diagnostic f this application.
@@ -134,7 +134,7 @@ private:
 
     int _state;
     Doctor _doctor;
-    QHash<QString, Issue> _viewData;
+    QHash<int, Issue> _viewData;
     double _progress;
 };
 

@@ -41,8 +41,16 @@ public:
     iPill();
 
     /**
+     * @brief id This method return unique id of this pill object.
+     * @return unique id of this pill object.
+     */
+    virtual int id() const = 0;
+
+    /**
      * @brief name This method should be return name of this pill.
+     * @note for get id use the @a iPill::id method.
      * @return name of this pill.
+     * @see iPill::id
      */
     virtual QString name() const = 0;
 

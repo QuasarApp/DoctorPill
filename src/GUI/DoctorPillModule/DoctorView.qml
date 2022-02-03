@@ -205,7 +205,7 @@ Page {
                         visible: issueStatus === 0
                         onClicked: {
                             if (root.model) {
-                                root.model.usePill(issueName);
+                                root.model.usePill(id);
                             }
                         }
                     }
@@ -215,7 +215,7 @@ Page {
                         visible: issueStatus === 1
                         onClicked: {
                             if (root.model) {
-                                root.model.drop(row);
+                                root.model.drop(id);
                             }
                         }
                     }

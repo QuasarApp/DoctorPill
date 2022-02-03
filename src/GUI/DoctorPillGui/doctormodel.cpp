@@ -49,8 +49,8 @@ QVariant DoctorModel::data(const QModelIndex &index, int role) const {
         return "Internal Error";
     }
 
-    if ( role == Roles::Row) {
-        return index.row();
+    if ( role == Roles::Id) {
+        return item._pill->id();
     }
 
     if (role == Roles::Name) {
@@ -74,12 +74,12 @@ QHash<int, QByteArray> DoctorModel::roleNames() const {
     roles[Roles::Name] = "issueName";
     roles[Roles::Description] = "issueDescription";
     roles[Roles::Status] = "issueStatus";
-    roles[Roles::Row] = "row";
+    roles[Roles::Id] = "id";
 
     return roles;
 }
 
-void DoctorModel::usePill(QString pillName) {
+void DoctorModel::usePill(int pillName) {
 
     auto work = [this, pillName](){
         auto pill = _viewData.value(pillName, {});
@@ -103,10 +103,14 @@ void DoctorModel::diagnostic() {
     auto val = QtConcurrent::run(work);
 }
 
-void DoctorModel::drop(int row) {
-    if (row < 0 || row >= rowCount()) {
+void DoctorModel::drop(int id) {
+
+    auto iter = _viewData.find(id);
+
+    if (iter == _viewData.end())
         return;
-    }
+
+    int row = std::distance(_viewData.begin(), iter);
 
     beginRemoveRows(QModelIndex{}, row, row);
     _viewData.erase(std::next(_viewData.begin(), row));
@@ -121,7 +125,7 @@ void DoctorModel::handleFixFailed(QList<QSharedPointer<iPill>> failed) {
 
 
     for (const auto &pill : qAsConst(failed)) {
-        _viewData[pill->name()]._status = static_cast<int>(IssueStatus::Failed);
+        _viewData[pill->id()]._status = static_cast<int>(IssueStatus::Failed);
     }
 
     emit dataChanged(index(0,0), index(rowCount() - 1, 0),
@@ -133,7 +137,7 @@ void DoctorModel::handleFixSuccessful(QList<QSharedPointer<iPill>> successful) {
 
 
     for (const auto &pill : qAsConst(successful)) {
-        _viewData[pill->name()]._status = static_cast<int>(IssueStatus::Solved);
+        _viewData[pill->id()]._status = static_cast<int>(IssueStatus::Solved);
     }
 
     emit dataChanged(index(0,0), index(rowCount() - 1, 0),
@@ -145,7 +149,7 @@ void DoctorModel::handleDiagnostcFinished(QList<QSharedPointer<iPill> > issues) 
 
     _viewData.clear();
     for (const auto &pill : qAsConst(issues)) {
-        _viewData[pill->name()] = Issue{0, pill};
+        _viewData[pill->id()] = Issue{0, pill};
     }
 
     endResetModel();

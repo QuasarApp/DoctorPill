@@ -19,6 +19,10 @@ public:
         _app = app;
     };
 
+    int id() const override {
+        return typeid (this).hash_code();
+    };
+
     QString name() const override {
         return "Test pill";
     };
