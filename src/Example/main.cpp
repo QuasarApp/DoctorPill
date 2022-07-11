@@ -29,11 +29,11 @@ public:
     };
 
 protected:
-    bool diagnostic() const override {
+    bool diagnostic() override {
         std::this_thread::sleep_for(std::chrono::seconds(1));
         return true;
     };
-    bool fix() const override {
+    bool fix() override {
         return true;
     };
 };
@@ -56,11 +56,11 @@ public:
     };
 
 protected:
-    bool diagnostic() const override {
+    bool diagnostic() override {
         std::this_thread::sleep_for(std::chrono::seconds(1));
         return true;
     };
-    bool fix() const override {
+    bool fix() override {
         return true;
     };
 
@@ -85,11 +85,11 @@ public:
     };
 
 protected:
-    bool diagnostic() const override {
+    bool diagnostic() override {
         std::this_thread::sleep_for(std::chrono::seconds(1));
         return true;
     };
-    bool fix() const override {
+    bool fix() override {
         return true;
     };
 };
@@ -119,11 +119,11 @@ public:
     };
 
 protected:
-    bool diagnostic() const override {
+    bool diagnostic() override {
         std::this_thread::sleep_for(std::chrono::seconds(1));
         return true;
     };
-    bool fix() const override {
+    bool fix() override {
         return true;
     };
 };

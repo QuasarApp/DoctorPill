@@ -67,13 +67,13 @@ protected:
      * @note This method will executed only on the Doctor object.
      * @return true if the issues is detected.
      */
-    virtual bool diagnostic() const = 0;
+    virtual bool diagnostic() = 0;
 
     /**
      * @brief fix This method should be fix detected issue.
      * @return true if the issue fixes successful else false
      */
-    virtual bool fix() const = 0;
+    virtual bool fix() = 0;
 
 
     friend class Doctor;

@@ -32,11 +32,11 @@ public:
     };
 
 protected:
-    bool diagnostic() const override {
+    bool diagnostic() override {
         return _app->_appIsBroken;
     };
 
-    bool fix() const override {
+    bool fix() override {
         _app->_appIsBroken = false;
         return !_app->_appIsBroken;
     };
