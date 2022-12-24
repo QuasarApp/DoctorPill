@@ -17,7 +17,7 @@ Doctor::Doctor(const QList<QSharedPointer<iPill> > &base) {
     qRegisterMetaType<QList<QSharedPointer<iPill> >>();
 }
 
-void Doctor::diagnostic(bool fix) const {
+void Doctor::diagnostic(bool fix) {
 
     QList<QSharedPointer<iPill> > failed;
     QList<QSharedPointer<iPill> > detected;
@@ -55,7 +55,7 @@ void Doctor::diagnostic(bool fix) const {
     }
 }
 
-void Doctor::fix(const QList<QSharedPointer<iPill> > &pills) const {
+void Doctor::fix(const QList<QSharedPointer<iPill> > &pills) {
 
     QList<QSharedPointer<iPill> > failed;
     QList<QSharedPointer<iPill> > fixedSuccessful;
