@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2022 QuasarApp.
+ * Copyright (C) 2018-2023 QuasarApp.
  * Distributed under the GPLv3 software license, see the accompanying
  * Everyone is permitted to copy and distribute verbatim copies
  * of this license document, but changing it is not allowed.
@@ -9,6 +9,7 @@
 #define DOCTOR_H
 
 #include "ipill.h"
+#include <QObject>
 #include <QSharedPointer>
 
 namespace DP {
