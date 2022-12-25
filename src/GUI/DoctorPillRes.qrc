@@ -6,7 +6,6 @@
     <qresource prefix="/DoctorPillTr">
         <file>languages/en.qm</file>
         <file>languages/de.qm</file>
-        <file>languages/es.qm</file>
         <file>languages/fr.qm</file>
         <file>languages/ja.qm</file>
         <file>languages/pl.qm</file>
