@@ -49,7 +49,9 @@ set(LANGS ${CMAKE_CURRENT_SOURCE_DIR}/languages/en.ts
 
 prepareQM(${CURRENT_PROJECT} ${CMAKE_CURRENT_SOURCE_DIR}/../ "${LANGS}")
 
-set(QML_IMPORT_PATH ${QML_IMPORT_PATH} "${CMAKE_CURRENT_SOURCE_DIR}" CACHE STRING "" FORCE)
+if (NOT QML_IMPORT_PATH MATCHES "${CMAKE_CURRENT_SOURCE_DIR}")
+    set(QML_IMPORT_PATH ${QML_IMPORT_PATH} "${CMAKE_CURRENT_SOURCE_DIR}" CACHE STRING "" FORCE)
+endif()
 
 set(global_file "${CMAKE_CURRENT_SOURCE_DIR}/doctorpill_gui_global.h")
 configure_file("${global_file}.in" ${global_file} @ONLY)
